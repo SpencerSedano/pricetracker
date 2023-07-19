@@ -69,8 +69,10 @@ def steam(session):
     resp = session.get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
-        "steaml4d",
+        "steaml4d NT",
         float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
+        "steaml4d US",
+        float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
     return data
 
@@ -79,8 +81,10 @@ def steam2(session):
     resp = session.get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
-        "trickytowers",
+        "trickytowers NT",
         float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
+        "trickytowers US",
+        float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
     return data
 
