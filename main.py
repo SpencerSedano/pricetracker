@@ -69,8 +69,8 @@ def steam(session):
     resp = session.get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
-        "steaml4d NT",
-        float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
+        #"steaml4d NT",
+        #float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
         "steaml4d US",
         float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
@@ -81,8 +81,8 @@ def steam2(session):
     resp = session.get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
-        "trickytowers NT",
-        float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
+        #"trickytowers NT",
+        #float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
         "trickytowers US",
         float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
@@ -102,7 +102,7 @@ def main():
     with orm.db_session:
         for item in data:
             Product(name=item[0], price=item[1], created_date=datetime.now())
-            if item[1] > 150:
+            if item[1] > 1:
                 send_email(item[0], item[1])
 
 
