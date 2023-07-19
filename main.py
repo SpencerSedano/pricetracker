@@ -98,7 +98,7 @@ def main():
     with orm.db_session:
         for item in data:
             Product(name=item[0], price=item[1], created_date=datetime.now())
-            if item[1] < 150:
+            if item[1] > 150:
                 send_email(item[0], item[1])
 
 
