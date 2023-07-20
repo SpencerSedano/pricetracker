@@ -88,6 +88,18 @@ def steam2(session):
     )
     return data
 
+def steam3(session):
+    url = "https://store.steampowered.com/app/218620/PAYDAY_2/"
+    resp = session.get(url)
+    soup = BeautifulSoup(resp.text, "html.parser")
+    data = (
+        #"trickytowers NT",
+        #float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
+        "PAYDAY 2 US",
+        float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
+    )
+    return data
+
 
 def main():
     session = requests.Session()
