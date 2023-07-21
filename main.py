@@ -93,9 +93,17 @@ def steam3(session):
     resp = session.get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
-        #"trickytowers NT",
-        #float(soup.select_one("div.game_purchase_price.price").text.replace("NT$", "")),
         "PAYDAY 2 US",
+        float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
+    )
+    return data
+
+def steam4(session):
+    url = "https://store.steampowered.com/app/1225570/Unravel_Two/"
+    resp = session.get(url)
+    soup = BeautifulSoup(resp.text, "html.parser")
+    data = (
+        "Unravel Two US",
         float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
     return data
@@ -111,6 +119,7 @@ def main():
         steam(session),
         steam2(session),
         steam3(session),
+        steam4(session),
     ]
     with orm.db_session:
         for item in data:
