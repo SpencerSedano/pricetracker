@@ -110,6 +110,7 @@ def main():
     data = [
         steam(session),
         steam2(session),
+        steam3(session),
     ]
     with orm.db_session:
         for item in data:
