@@ -130,7 +130,6 @@ def main():
         for item in data:
             Product(name=item[0], price=item[1], created_date=datetime.now())
             if item[1] <= 9.99:
-                print(item[1])
                 send_email(item[0], item[1])
 
 
