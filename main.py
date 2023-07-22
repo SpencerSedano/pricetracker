@@ -88,6 +88,8 @@ def steam2(session):
     )
     return data
 
+
+'''
 def steam3(session):
     url = "https://store.steampowered.com/app/218620/PAYDAY_2/"
     resp = session.get(url)
@@ -97,6 +99,8 @@ def steam3(session):
         float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
     return data
+'''
+
 
 def steam4(session):
     url = "https://store.steampowered.com/app/1225570/Unravel_Two/"
@@ -118,7 +122,7 @@ def main():
     data = [
         steam(session),
         steam2(session),
-        steam3(session),
+        #steam3(session),
         steam4(session),
     ]
     with orm.db_session:
