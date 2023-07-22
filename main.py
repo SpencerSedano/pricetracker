@@ -64,6 +64,8 @@ class Product(db.Entity):
 
 db.generate_mapping(create_tables=True)
 
+cookies = {'birthtime': '568022401'}
+
 def steam(session):
     url = "https://store.steampowered.com/app/550/Left_4_Dead_2/"
     resp = session.get(url)
@@ -89,17 +91,16 @@ def steam2(session):
     return data
 
 
-'''
+
 def steam3(session):
     url = "https://store.steampowered.com/app/218620/PAYDAY_2/"
-    resp = session.get(url)
+    resp = session.get(url, cookies=cookies)
     soup = BeautifulSoup(resp.text, "html.parser")
     data = (
         "PAYDAY 2 US",
         float(soup.select_one("div.game_purchase_price.price").text.replace("$", "")),
     )
     return data
-'''
 
 
 def steam4(session):
@@ -122,13 +123,14 @@ def main():
     data = [
         steam(session),
         steam2(session),
-        #steam3(session),
+        steam3(session),
         steam4(session),
     ]
     with orm.db_session:
         for item in data:
             Product(name=item[0], price=item[1], created_date=datetime.now())
             if item[1] <= 9.99:
+                print(item[1])
                 send_email(item[0], item[1])
 
 
