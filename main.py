@@ -34,9 +34,9 @@ except KeyError:
 
 #Sending an email function
 def send_email (game, price):
-    email_sender = 'spencer.sv20@gmail.com'
-    email_password = 'omvsotnnnwqxhwus'
-    email_receiver = 'yuqinghao777@gmail.com'
+    email_sender = 'email'
+    email_password = 'password'
+    email_receiver = 'email'
 
     subject = f'Change price of {game}'
     body = f'The price of {game} is {price}. Go ahead and buy!' 
